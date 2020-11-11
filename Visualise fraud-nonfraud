@@ -1,3 +1,4 @@
+pca_df = df.copy()
 target = pca_df.pop("Class")
 scaler = StandardScaler()
 pca_df = scaler.fit_transform(pca_df)
