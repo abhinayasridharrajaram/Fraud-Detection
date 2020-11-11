@@ -1,12 +1,29 @@
 pca_df = df.copy()
+#Just selecting the target which is the class. The command pop will select just the target which in this case is "Class" column.
+
 target = pca_df.pop("Class")
+
+
+# PCA is effected by scale so you need to scale the features in your data before applying PCA. Use StandardScaler to help you standardize
+#the dataset’s features onto unit scale (mean = 0 and variance = 1)
+#which is a requirement for the optimal performance of many machine learning algorithms & for visualization here.
+
 scaler = StandardScaler()
 pca_df = scaler.fit_transform(pca_df)
+
+# The original data has 4 columns (sepal length, sepal width, petal length, and petal width). In this section,
+#the code projects the original data which is 4 dimensional into 2 dimensions. I should note that after dimensionality reduction, 
+#there usually isn’t a particular meaning assigned to each principal component. The new components are just the two main dimensions of variation.
+
 pca = PCA(n_components=2)
 components = pca.fit_transform(pca_df)
 
 comp_df = pd.DataFrame(components, columns=["X", "y"])
 target = target.reset_index(drop=True)
+
+
+# Concatenating DataFrame along axis = 1. plot_df is the final DataFrame before plotting the data.
+
 plot_df = pd.concat([comp_df, target], axis=1)
 
 
