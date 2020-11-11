@@ -3,7 +3,8 @@ pca_df = df.copy()
 
 target = pca_df.pop("Class")
 
-
+#If your learning algorithm is too slow be#cause the input dimension is too high, then using PCA to speed
+#it up can be a reasonable choice. This is probably the most common application of PCA. Another common application of PCA is for data visualization.
 # PCA is effected by scale so you need to scale the features in your data before applying PCA. Use StandardScaler to help you standardize
 #the dataset’s features onto unit scale (mean = 0 and variance = 1)
 #which is a requirement for the optimal performance of many machine learning algorithms & for visualization here.
@@ -11,7 +12,7 @@ target = pca_df.pop("Class")
 scaler = StandardScaler()
 pca_df = scaler.fit_transform(pca_df)
 
-# The original data has 4 columns (sepal length, sepal width, petal length, and petal width). In this section,
+# The original data has many columns. For a lot of machine learning applications it helps to be able to visualize your data.
 #the code projects the original data which is 4 dimensional into 2 dimensions. I should note that after dimensionality reduction, 
 #there usually isn’t a particular meaning assigned to each principal component. The new components are just the two main dimensions of variation.
 
@@ -28,7 +29,7 @@ plot_df = pd.concat([comp_df, target], axis=1)
 
 
 def fraud_plot(plot_df, maj_alpha=0.5, min_alpha=1, save=None):
-    """Plots reduced data
+    """Plots data
     
     Args:
         plot_df (DataFrame): Reduced data
