@@ -1,0 +1,6 @@
+df = pd.read_csv("creditcard_sampledata_3.csv")
+df.head()
+df.info()
+df.head()
+# Count the occurrences of fraud and no fraud and print them
+Counting_number_of_fraud = df['Class'].value_counts()
