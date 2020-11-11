@@ -1,0 +1,30 @@
+target = pca_df.pop("Class")
+scaler = StandardScaler()
+pca_df = scaler.fit_transform(pca_df)
+pca = PCA(n_components=2)
+components = pca.fit_transform(pca_df)
+
+comp_df = pd.DataFrame(components, columns=["X", "y"])
+target = target.reset_index(drop=True)
+plot_df = pd.concat([comp_df, target], axis=1)
+
+
+def fraud_plot(plot_df, maj_alpha=0.5, min_alpha=1, save=None):
+    """Plots reduced data
+    
+    Args:
+        plot_df (DataFrame): Reduced data
+        maj_alpha (float): Transparency setting for majority class
+        min_alpha (float): Transparency setting for minority class
+        save (str): Filename for saving plot
+    """
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax = sns.scatterplot(x="X", y="y", alpha=maj_alpha, data=plot_df[plot_df.Class == 0], label="Legitimate")
+    sns.scatterplot(x="X", y="y", alpha=min_alpha, data=plot_df[plot_df.Class == 1], ax=ax, label="Fraud")
+    plt.title("Legitimate vs Fraudulent Purchases")
+    plt.tight_layout()
+    if save != None:
+        plt.savefig(save)
+    plt.show()
+    
+    pass
