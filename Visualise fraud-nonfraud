@@ -8,14 +8,14 @@ target = pca_df.pop("Class")
 # PCA is effected by scale so you need to scale the features in your data before applying PCA. Use StandardScaler to help you standardize
 #the dataset’s features onto unit scale (mean = 0 and variance = 1)
 #which is a requirement for the optimal performance of many machine learning algorithms & for visualization here.
-
+from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 pca_df = scaler.fit_transform(pca_df)
 
 # The original data has many columns. For a lot of machine learning applications it helps to be able to visualize your data.
 #the code projects the original data which is 31 dimensional into 2 dimensions. I should note that after dimensionality reduction, 
 #there usually isn’t a particular meaning assigned to each principal component. The new components are just the two main dimensions of variation.
-
+from sklearn.decomposition import PCA
 pca = PCA(n_components=2)
 components = pca.fit_transform(pca_df)
 
