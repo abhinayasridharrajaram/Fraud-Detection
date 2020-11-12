@@ -1,3 +1,31 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+import numpy as np
+from pprint import pprint as pp
+import csv
+from pathlib import Path
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline 
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import r2_score, classification_report, confusion_matrix, accuracy_score, roc_auc_score, roc_curve, precision_recall_curve, average_precision_score
+from sklearn.metrics import homogeneity_score, silhouette_score
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.cluster import MiniBatchKMeans, DBSCAN
+import seaborn as sns
+from itertools import product
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem.wordnet import WordNetLemmatizer
+import string
+import gensim
+from gensim import corpora
+import pyLDAvis.gensim
+
 df = pd.read_csv("creditcard_sampledata_3.csv")
 df.head()
 df.info()
