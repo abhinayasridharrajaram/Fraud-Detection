@@ -1,0 +1,29 @@
+#Trandtional Rule based mechanism # 22/50fraud cases are detected, 28 are not detected, and 16 false positives are identified.
+
+df.drop(['Unnamed: 0'], axis=1, inplace=True)
+      
+df.groupby('Class').mean()
+      
+df['flag_as_fraud'] = np.where(np.logical_and(df.V1 < -3, df.V3 < -5), 1, 0)
+      
+pd.crosstab(df.Class, df.flag_as_fraud, rownames=['Actual Fraud'], colnames=['Flagged Fraud'])
+
+
+#Logistic Regression the old way
+
+
+# Step 1: split the features and labels into train and test data 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Step 2: Define which model to use 
+model = LinearRegression()
+
+# Step 3: Fit the model to the training data
+ model.fit(X_train, y_train)
+
+# Step 4: Obtain model predictions from the test data 
+y_predicted = model.predict(X_test)
+
+# Step 5: Compare y_test to predictions and obtain performance metrics (r^2 score) 
+r2_score(y_test, y_predicted)
+
