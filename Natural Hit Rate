@@ -1,0 +1,23 @@
+df2 = pd.read_csv("creditcard_sampledata_2.csv")
+df2.head()
+          
+X, y = prep_data(df2)
+print(f'X shape: {X.shape}\ny shape: {y.shape}')
+          
+X[0, :]
+          
+df2.Class.value_counts()
+          
+# Count the total number of observations from the length of y
+total_obs = len(y)
+total_obs
+          
+# Count the total number of non-fraudulent observations 
+non_fraud = [i for i in y if i == 0]
+count_non_fraud = non_fraud.count(0)
+count_non_fraud
+          
+percentage = count_non_fraud/total_obs * 100
+print(f'{percentage:0.2f}%')
+ 
+#This tells us that by doing nothing, we would be correct in 95.9% of the cases.  So, if we get an accuracy of less than this number, our model does not actually add any value in predicting how many cases are correct.
