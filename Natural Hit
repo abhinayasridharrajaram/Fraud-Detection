@@ -1,0 +1,31 @@
+#We explore how prevalent fraud is in the dataset, to understand what the "natural accuracy" is, 
+#if we were to predict everything as non-fraud. It's is important to understand which level of "accuracy" you need to "beat" 
+#in order to get a better prediction than by doing nothing. In the following exercises, you'll create our first random forest classifier for fraud detection. 
+#That will serve as the "baseline" model that you're going to try to improve in the upcoming steps.
+#Count the total number of observations by taking the length of your labels y.
+#Count the non-fraud cases in our data by using list comprehension on y; remember y is a NumPy array so .value_counts() cannot be used in this case.
+#Calculate the natural accuracy by dividing the non-fraud cases over the total observations.
+#Print the percentage.
+df2 = pd.read_csv("creditcard_sampledata_2.csv")
+df2.head()
+          
+X, y = prep_data(df2)
+print(f'X shape: {X.shape}\ny shape: {y.shape}')
+          
+X[0, :]
+          
+df2.Class.value_counts()
+          
+# Count the total number of observations from the length of y
+total_obs = len(y)
+total_obs
+          
+# Count the total number of non-fraudulent observations 
+non_fraud = [i for i in y if i == 0]
+count_non_fraud = non_fraud.count(0)
+count_non_fraud
+          
+percentage = count_non_fraud/total_obs * 100
+print(f'{percentage:0.2f}%')
+ 
+#This tells us that by doing nothing, we would be correct in 95.9% of the cases.  So, if we get an accuracy of less than this number, our model does not actually add any value in predicting how many cases are correct.
