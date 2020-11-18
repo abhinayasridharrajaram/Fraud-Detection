@@ -1,0 +1,25 @@
+#Let's now create a first random forest classifier for fraud detection. Hopefully you can do better than the baseline accuracy you've just calculated, which was roughly 96%. This model will serve as the "baseline" model .Let's start first with splitting the data into a test and training set, and defining the Random Forest model. The data available are features X and labels y. We need to set a random state here in order to be able to compare results across different models.
+#Import the random forest classifier from sklearn.
+#Split your features X and labels y into a training and test set. Set aside a test set of 30%.
+#Assign the random forest classifier to model and keep random_state at 5. 
+
+
+
+# Split your data into training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+# Define the model as the random forest
+model = RandomForestClassifier(random_state=5, n_estimators=20)
+ 
+# Fit the model to our training set. #Let's see how our Random Forest model performs without doing anything special to it. 
+#The model from the previous is avaialble, and we've already split your data in X_train,
+ #y_train, X_test, y_test.
+
+model.fit(X_train, y_train)
+
+
+# Obtain predictions from the test data 
+predicted = model.predict(X_test)
+
+print(f'Accuracy Score:\n{accuracy_score(y_test, predicted):0.3f}')
+
+# We see 99.1%accuracy
