@@ -1,0 +1,34 @@
+# Import the packages to get the different performance metrics
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+
+# Obtain the predictions from our random forest model 
+predicted = model.predict(X_test)
+
+# Predict probabilities
+probs = model.predict_proba(X_test)
+
+# Print the ROC curve, classification report and confusion matrix
+print(roc_auc_score(y_test, probs[:,1]))
+print(classification_report(y_test, predicted))
+print(confusion_matrix(y_test, predicted))
+#Much like the ROC curve, The precision-recall curve is used for evaluating the performance of binary classification algorithms. It is often used in situations where classes are heavily imbalanced. Also like ROC curves, precision-recall curves provide a graphical representation of a classifier’s performance across many thresholds, rather than a single value (e.g., accuracy, f-1 score, etc.). The precision-recall curve is constructed by calculating and plotting the precision against the recall for a single classifier at a variety of thresholds.
+#AUC-PR and AP
+#Much like ROC curves, we can summarize the information in a precision-recall curve with a single value. This summary metric is the AUC-PR. AUC-PR stands for area under the (precision-recall) curve. Generally, the higher the AUC-PR score, the better a classifier performs for the given task.
+#One way to calculate AUC-PR is to find the AP, or average precision. The documentation for sklearn.metrics.average_precision_score states, “AP summarizes a precision-recall curve as the weighted mean of precision achieved at each threshold, with the increase in recall from the previous threshold used as the weight.” So, we can think of AP as a kind of weighted-average precision across all thresholds.
+#In a perfect classifier, AUC-PR =1. In a “baseline” classifier, the AUC-PR will depend on the fraction of observations belonging to the positive class. For example, in a balanced binary classification data set, the “baseline” classifier will have AUC-PR = 0.5. A classifier that provides some predictive value will fall between the “baseline” and perfect classifiers.
+
+
+
+# Calculate average precision and the PR curve
+average_precision = average_precision_score(y_test, predicted)
+average_precision
+
+# Obtain precision and recall 
+precision, recall, _ = precision_recall_curve(y_test, predicted)
+print(f'Precision: {precision}\nRecall: {recall}')
+#Plot it
+
+disp = plot_precision_recall_curve(model, X_test, y_test)
+disp.ax_.set_title('2-class Precision-Recall curve: ' 'AP={0:0.2f}'.format(average_precision))
+Text(0.5, 1.0, '2-class Precision-Recall curve: AP=0.79')
+plt.show()
