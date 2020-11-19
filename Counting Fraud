@@ -15,6 +15,7 @@ from sklearn.metrics import r2_score, classification_report, confusion_matrix, a
 from sklearn.metrics import homogeneity_score, silhouette_score
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.naive_bayes import GaussianNB
 from sklearn.cluster import MiniBatchKMeans, DBSCAN
 import seaborn as sns
 from itertools import product
