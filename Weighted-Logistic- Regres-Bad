@@ -1,0 +1,4 @@
+# Define the Logistic Regression model with weights
+model = LogisticRegression(class_weight={0:1, 1:15}, random_state=5, solver='liblinear')
+# Get the model results
+get_model_results(X_train, y_train, X_test, y_test, model)
