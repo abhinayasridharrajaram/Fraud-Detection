@@ -1,3 +1,6 @@
+3 We see that the model results don't improve drastically. 
+# We now have few less false positives, but  18 false negatives, i.e. cases of fraud we are not catching. 
+#If we mostly care about catching fraud, and not so much about the false positives, this does actually not improve our model at all, albeit a simple option to try
 # Define the model with balanced subsample
 model = RandomForestClassifier(class_weight='balanced_subsample', random_state=5)
 
