@@ -1,3 +1,5 @@
+#By combining the classifiers, 
+#We can take the best of multiple models. we've increased the cases of fraud you are catching from 76 to 78, and we only have 5 extra false positives in return
 # Define the three classifiers to use in the ensemble
 clf1 = LogisticRegression(class_weight={0:1, 1:15},
                           random_state=5,
