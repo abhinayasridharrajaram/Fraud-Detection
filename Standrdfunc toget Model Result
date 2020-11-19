@@ -1,0 +1,16 @@
+def get_model_results(X_train: np.ndarray, y_train: np.ndarray,X_test: np.ndarray, y_test: np.ndarray, model):
+    # Fit your training model to your training set
+    model.fit(X_train, y_train)
+	#Obtain the predicted values and probabilities from the model 
+    predicted = model.predict(X_test)
+    try:
+        probs = model.predict_proba(X_test)
+        print('ROC Score:')
+        print(roc_auc_score(y_test, probs[:,1]))
+    except AttributeError:
+        pass
+	#Print the ROC curve, classification report and confusion matrix
+    print('\nClassification Report:')
+    print(classification_report(y_test, predicted))
+    print('\nConfusion Matrix:')
+    print(confusion_matrix(y_test, predicted))
